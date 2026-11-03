@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>星星数学大冒险 · 加减法小测验</title>
+<meta name="description" content="给 8 岁小朋友的加减法小测验：每次新题目，大号数字键盘，图解讲解，不用登录，纯前端。">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main class="app">
+  <!-- 开始页 -->
+  <section id="start-screen" class="card screen">
+    <div class="mascot" aria-hidden="true">🐰🌟</div>
+    <h1>星星数学大冒险</h1>
+    <p class="subtitle">加法减法小测验 · 每次都是新题目</p>
+    <p class="how">选一个难度，答 16 道题，集齐小星星吧！</p>
+    <div class="levels" role="group" aria-label="选择难度">
+      <button class="level" data-level="gentle" type="button">
+        <span class="level-emoji" aria-hidden="true">🌱</span>
+        <strong>温柔小星</strong><small>20 以内 · 不进位</small>
+      </button>
+      <button class="level selected" data-level="medium" type="button">
+        <span class="level-emoji" aria-hidden="true">⭐</span>
+        <strong>小星星</strong><small>100 以内两位数</small>
+      </button>
+      <button class="level" data-level="challenge" type="button">
+        <span class="level-emoji" aria-hidden="true">🚀</span>
+        <strong>挑战小达人</strong><small>三位数 · 缺数题</small>
+      </button>
+    </div>
+    <button id="start-btn" class="primary big" type="button">开始挑战 ▶</button>
+    <p id="best-line" class="best"></p>
+    <p class="foot">不用登录 · 不收集任何信息 · 答错也没关系</p>
+  </section>
+
+  <!-- 答题页 -->
+  <section id="quiz-screen" class="card screen hidden">
+    <div class="topbar">
+      <button id="quit-btn" class="ghost" type="button" aria-label="退出">✕ 退出</button>
+      <div class="progress" aria-label="进度"><div id="progress-fill"></div></div>
+      <span id="progress-text">1 / 16</span>
+      <span id="star-count" aria-label="已得星星">⭐ 0</span>
+      <span id="timer">00:00</span>
+      <button id="sound-btn" class="ghost" type="button" aria-label="开关声音">🔊</button>
+    </div>
+
+    <div class="quiz-layout">
+      <div class="question-side">
+        <div id="question-box" class="question-box">
+          <div id="question-text" class="question" aria-live="polite">47 + 36 = ?</div>
+          <div id="answer-display" class="answer-display" aria-live="polite"><span class="placeholder">?</span></div>
+          <div id="feedback" class="feedback" aria-live="polite"></div>
+        </div>
+        <div class="hint-row">
+          <button id="hint-btn" class="ghost" type="button">💡 提示一下</button>
+          <button id="how-btn" class="ghost hidden" type="button">🔍 怎么算？</button>
+        </div>
+        <div id="explain-panel" class="explain hidden" aria-live="polite"></div>
+        <button id="next-btn" class="primary hidden" type="button">下一题 ▶</button>
+      </div>
+
+      <div class="keypad-side">
+        <div class="keypad" role="group" aria-label="数字键盘">
+          <button type="button" data-key="1">1</button>
+          <button type="button" data-key="2">2</button>
+          <button type="button" data-key="3">3</button>
+          <button type="button" data-key="4">4</button>
+          <button type="button" data-key="5">5</button>
+          <button type="button" data-key="6">6</button>
+          <button type="button" data-key="7">7</button>
+          <button type="button" data-key="8">8</button>
+          <button type="button" data-key="9">9</button>
+          <button type="button" data-key="back" aria-label="删除">⌫</button>
+          <button type="button" data-key="0">0</button>
+          <button type="button" data-key="ok" class="ok" aria-label="确认答案">✓</button>
+        </div>
+        <p class="keypad-tip">也可以直接按实体键盘输入</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 结果页 -->
+  <section id="result-screen" class="card screen hidden">
+    <div class="mascot" aria-hidden="true">🎉</div>
+    <h1>你完成啦！</h1>
+    <div id="result-stars" class="result-stars" aria-label="获得星星">⭐⭐⭐</div>
+    <p id="result-line" class="result-line"></p>
+    <p id="result-time" class="result-time"></p>
+    <div id="wrong-list" class="wrong-list"></div>
+    <div class="result-actions">
+      <button id="again-btn" class="primary" type="button">再玩一次 ↻</button>
+      <button id="change-level-btn" class="secondary" type="button">换个难度</button>
+    </div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
